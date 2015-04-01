@@ -2,14 +2,15 @@
 package cz.hartrik.ntg;
 
 import cz.hartrik.common.Color;
+import cz.hartrik.common.ui.javafx.DragAndDropInitializer;
 import cz.hartrik.ntg.dialogs.ExportDialog;
 import cz.hartrik.ntg.dialogs.FilterDialog;
+import cz.hartrik.ntg.io.DefaultUIProvider;
 import cz.hartrik.ntg.io.IOManager;
 import cz.hartrik.ntg.texture.Component;
 import cz.hartrik.ntg.texture.ComponentTexture;
 import cz.hartrik.ntg.texture.Texture;
 import cz.hartrik.ntg.texture.WhiteTexture;
-import java.util.Collection;
 import java.util.Random;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
@@ -25,7 +26,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Window;
 
 /**
- * @version 2015-03-31
+ * @version 2015-04-01
  * @author Patrik Harag
  */
 public class FrameController implements Initializable {
@@ -59,6 +60,13 @@ public class FrameController implements Initializable {
         filterDialog = new FilterDialog(this::getWindow, listView::getItems,
                 (c) -> listView.getItems().setAll(c));
         
+        DragAndDropInitializer.initFileDragAndDrop(listView, (files) -> {
+            ioManager.load(files.get(0)).ifPresent((components) -> {
+                listView.getItems().setAll(components);
+                updateTexture();
+            });
+        });
+        
         Platform.runLater(() -> {
             listView.setCellFactory(new ComponentCellFactory());
             listView.getItems().addAll(Component.create(DEF_COLORS));
@@ -90,7 +98,7 @@ public class FrameController implements Initializable {
             
             listView.getSelectionModel().select(0);
             renderer  = new Renderer(sampleView, texture);
-            ioManager = new IOManager(getWindow());
+            ioManager = new IOManager(getWindow(), new DefaultUIProvider());
         });
     }
     
@@ -193,11 +201,10 @@ public class FrameController implements Initializable {
     }
     
     @FXML protected void fileLoad() {
-        Collection<Component> load = ioManager.load();
-        if (load != null) {
-            listView.getItems().setAll(load);
+        ioManager.load().ifPresent((components) -> {
+            listView.getItems().setAll(components);
             updateTexture();
-        }
+        });
     }
     
     @FXML protected void info() {
