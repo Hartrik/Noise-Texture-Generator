@@ -60,7 +60,7 @@ public class IOManager {
     
     protected String format(Component component) {
         final Color color = component.getColor();
-        return String.format("%o\t%o\t%o\t%d", color.getRed(),
+        return String.format("%d\t%d\t%d\t%d", color.getRed(),
                 color.getGreen(), color.getBlue(), component.getCount());
     }
     

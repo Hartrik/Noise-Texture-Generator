@@ -14,5 +14,5 @@ function format(component) {
     var g = color.getGreen();
     var b = color.getBlue();
     
-    return java.lang.String.format("%o, %o, %o | %d", r, g, b, count);
+    return java.lang.String.format("%d, %d, %d | %d", r, g, b, count);
 }
