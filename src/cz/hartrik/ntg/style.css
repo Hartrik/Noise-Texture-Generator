@@ -1,0 +1,9 @@
+
+.root {
+    -fx-base: lightgray;
+}
+
+.panel {
+    -fx-background-color: rgba(0, 0, 0, 0.8);
+    -fx-background-radius: 10;
+}

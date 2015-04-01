@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import java.net.URL?>
+<?import java.util.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="AnchorPane" fx:id="anchorPane" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.hartrik.ntg.FrameController">
+  <children>
+    <ImageView id="texture" fx:id="sampleView" fitHeight="500.0" fitWidth="800.0" layoutX="0.0" layoutY="0.0" pickOnBounds="true" preserveRatio="true" />
+    <VBox padding="$x3" prefHeight="-1.0" prefWidth="250.0" spacing="10.0" style="" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+      <children>
+        <VBox minHeight="60.0" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" styleClass="panel" VBox.vgrow="NEVER">
+          <children>
+            <HBox alignment="BOTTOM_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="8.0">
+              <children>
+                <Button graphicTextGap="0.0" maxHeight="-1.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#fileSave" prefHeight="-1.0" prefWidth="-1.0" text="" textAlignment="LEFT" textOverrun="CLIP" wrapText="false">
+                  <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@icon%20-%20save.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button graphicTextGap="0.0" maxHeight="-1.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#fileLoad" prefHeight="-1.0" prefWidth="-1.0" text="" textAlignment="LEFT" textOverrun="CLIP" wrapText="false">
+                  <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@icon%20-%20import.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button graphicTextGap="0.0" maxHeight="-1.0" maxWidth="40.0" minHeight="40.0" minWidth="40.0" mnemonicParsing="false" onAction="#fileExport" prefHeight="-1.0" prefWidth="-1.0" text="" textAlignment="LEFT" textOverrun="CLIP" wrapText="false">
+                  <graphic>
+                    <ImageView fitHeight="32.0" fitWidth="32.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@icon%20-%20export.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+                <Button graphicTextGap="0.0" maxHeight="-1.0" maxWidth="40.0" minHeight="32.0" minWidth="32.0" mnemonicParsing="false" onAction="#info" prefHeight="32.0" prefWidth="32.0" text="" textAlignment="LEFT" textOverrun="CLIP" wrapText="false">
+                  <graphic>
+                    <ImageView fitHeight="24.0" fitWidth="24.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                      <image>
+                        <Image url="@icon%20-%20information.png" />
+                      </image>
+                    </ImageView>
+                  </graphic>
+                </Button>
+              </children>
+            </HBox>
+          </children>
+          <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" fx:id="x2" />
+          </padding>
+          <VBox.margin>
+            <Insets fx:id="x3" />
+          </VBox.margin>
+        </VBox>
+        <VBox padding="$x2" prefHeight="-1.0" prefWidth="-1.0" spacing="10.0" styleClass="panel" VBox.vgrow="ALWAYS">
+          <children>
+            <HBox prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <Button cancelButton="false" defaultButton="false" ellipsisString="" mnemonicParsing="false" onAction="#componentAdd" prefWidth="30.0" text="+" textAlignment="CENTER" underline="false">
+                  <font>
+                    <Font name="Arial Black" size="12.0" fx:id="x1" />
+                  </font>
+                </Button>
+                <Button fx:id="buttonRemove" cancelButton="false" defaultButton="false" ellipsisString="" font="$x1" mnemonicParsing="false" onAction="#componentRemove" prefWidth="30.0" text="-" textAlignment="CENTER" underline="false" />
+                <Button fx:id="buttonDown" cancelButton="false" defaultButton="false" ellipsisString="" font="$x1" mnemonicParsing="false" onAction="#componentMoveDown" prefWidth="30.0" text="▼" textAlignment="CENTER" underline="false" />
+                <Button fx:id="buttonUp" cancelButton="false" defaultButton="false" ellipsisString="" font="$x1" mnemonicParsing="false" onAction="#componentMoveUp" prefWidth="30.0" text="▲" textAlignment="CENTER" underline="false" />
+                <HBox alignment="TOP_RIGHT" prefHeight="-1.0" prefWidth="-1.0" HBox.hgrow="SOMETIMES">
+                  <children>
+                    <Button id="buttonUp" alignment="CENTER" cancelButton="false" contentDisplay="CENTER" defaultButton="false" disable="false" ellipsisString="" font="$x1" graphicTextGap="0.0" maxWidth="-1.0" minWidth="30.0" mnemonicParsing="false" mouseTransparent="false" onAction="#componentFilter" prefWidth="30.0" text="" textAlignment="CENTER" textOverrun="ELLIPSIS" underline="false" wrapText="false">
+                      <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                            <Image url="@icon%20-%20filter.png" />
+                          </image>
+                        </ImageView>
+                      </graphic>
+                    </Button>
+                  </children>
+                </HBox>
+              </children>
+            </HBox>
+            <ListView fx:id="listView" editable="false" prefHeight="-1.0" prefWidth="-1.0" style="" VBox.vgrow="ALWAYS">
+              <VBox.margin>
+                <Insets fx:id="x3" />
+              </VBox.margin>
+            </ListView>
+            <HBox fx:id="componentEditPane" alignment="CENTER_LEFT" prefHeight="-1.0" prefWidth="-1.0" spacing="5.0" VBox.vgrow="NEVER">
+              <children>
+                <ColorPicker id="textField" fx:id="colorPicker" onAction="#componentEdit" prefWidth="100.0" />
+                <TextField id="colorPicker" fx:id="textField" prefWidth="60.0" HBox.hgrow="ALWAYS" />
+              </children>
+            </HBox>
+          </children>
+        </VBox>
+      </children>
+    </VBox>
+  </children>
+  <stylesheets>
+    <URL value="@style.css" />
+  </stylesheets>
+</AnchorPane>
